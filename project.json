@@ -1,0 +1,37 @@
+{
+    "project_type": "javascript",
+
+    "debugMode" : 1,
+    "showFPS" : true,
+    "frameRate" : 60,
+    "noCache" : false,
+    "id" : "gameCanvas",
+    "renderMode" : 0,
+    "engineDir":"frameworks/cocos2d-html5",
+
+    "modules" : ["cocos2d"],
+
+    "jsList" : [
+        "src/resource.js",
+        "src/gl_schedule.js",
+        "src/glbalFunc.js",
+
+        
+
+        "src/mj/LoadRes.js",
+        "src/mj/MjConst.js",
+
+        "src/mj/control/MjData.js",
+        "src/mj/control/MjControl.js",
+        "src/mj/control/RuoZhiAI.js",
+
+        "src/mj/MjCard.js",
+        "src/mj/OperateCompoment.js",
+        "src/mj/MyCardLogic.js",
+        "src/mj/MyCardCompoment.js",
+        "src/mj/OtherCardCompoment.js",
+        "src/mj/OutCardsCompoment.js",
+
+        "src/app.js"
+    ]
+}
