@@ -26,6 +26,5 @@ var RuoZhiAI = cc.Class.extend({
 		}
 		var schedule = new CSchedule(null, true);
 		schedule.start(0, 0.3, func.bind(this));
-		cc.log("-----", seat, card_data);
 	}
 });

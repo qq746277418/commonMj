@@ -1,6 +1,7 @@
 var HelloWorldLayer = cc.Layer.extend({
     m_handCardComs: [],
     m_myHandCardCom: null,
+    m_AIs: [],
     sprite:null,
 
     m_mjData: null,
@@ -49,8 +50,9 @@ var HelloWorldLayer = cc.Layer.extend({
                 cardM = new OtherCardCompoment(this, i);
                 var datas = this.m_mjData.randGetCardDatas(13);
                 cardM.initCardNum(datas.length);
-                cardM.getAI().initCardData(datas);
-                cardM.getAI().addPlayOutObserver(this.onOutCard.bind(this));
+                this.m_AIs[i] = new RuoZhiAI();
+                this.m_AIs[i].initCardData(datas);
+                this.m_AIs[i].addPlayOutObserver(this.onOutCard.bind(this));
             }
             this.m_handCardComs[i] = cardM;
             cardM.setPosition(MJ.IintHandPoint[i]);
@@ -61,6 +63,11 @@ var HelloWorldLayer = cc.Layer.extend({
 
         this.m_outCardCom = new OutCardsCodmpoment();
         this.addChild(this.m_outCardCom);
+
+        // this.m_operatorUi = new CpghOperatorUi();
+        // this.addChild(this.m_operatorUi);
+        // this.m_operatorUi.y = 100;
+        // this.m_operatorUi.x = 100;
 
         addNodeTouchEventListener(this, this._touchListener.bind(this));
         this._bindObserver();
@@ -74,7 +81,6 @@ var HelloWorldLayer = cc.Layer.extend({
         this.m_myHandCardCom.serverSendOurCardObserver(this.onOutCard.bind(this));
         this.m_myHandCardCom.addOperateCardColorObserver(this.allOperatorCardsChangeColor.bind(this));
         this.m_myHandCardCom.addOutCardColorObserver(this.m_outCardCom.changeColorSelectedCard.bind(this.m_outCardCom));
-        //this.m_myHandCardCom.addShowOutCardObserver(this.showOutCard.bind(this))
     },
 
     allOperatorCardsChangeColor: function(data, ret)
@@ -87,7 +93,12 @@ var HelloWorldLayer = cc.Layer.extend({
     upLoadCard: function()
     {
         var currentSeat = this.m_mjCardContorl.nextSeat();
-        this.m_handCardComs[currentSeat].uploadCard(this.m_mjData.randGetCardData());
+        var upCard = this.m_mjData.randGetCardData();
+        this.m_handCardComs[currentSeat].uploadCard(upCard);
+        if (currentSeat != MJ.my_seat) {
+            //其他玩家交给AI处理数据
+            this.m_AIs[currentSeat].playOutCard(upCard, currentSeat);
+        }
     },
 
     onOutCard: function(card_data, seat)

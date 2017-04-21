@@ -19,16 +19,16 @@ var OperationNode = cc.Node.extend({
 
 		// //会出现 碰变杠情况
 		this.m_gangOffset = [];
-		this.m_gangOffset[PlayerType.bottom] = {x: 0, y: 19};
-		this.m_gangOffset[PlayerType.left] = {x: 0, y: 6};
-		this.m_gangOffset[PlayerType.right] = {x: 0, y: 6};
-		this.m_gangOffset[PlayerType.top] = {x: 1, y: 16};
+		this.m_gangOffset[MJ.PlayerType.bottom] = {x: 0, y: 19};
+		this.m_gangOffset[MJ.PlayerType.left] = {x: 0, y: 6};
+		this.m_gangOffset[MJ.PlayerType.right] = {x: 0, y: 6};
+		this.m_gangOffset[MJ.PlayerType.top] = {x: 1, y: 16};
 		//
 		this.m_pointOffset = [];
-		this.m_pointOffset[PlayerType.bottom] = {w: -4, h: 0};
-		this.m_pointOffset[PlayerType.left] = 	{w: 0, 	h: -12};
-		this.m_pointOffset[PlayerType.right] =	{w: 0, 	h: -12};
-		this.m_pointOffset[PlayerType.top] =	{w: -4, h: 0};
+		this.m_pointOffset[MJ.PlayerType.bottom] = {w: -4, h: 0};
+		this.m_pointOffset[MJ.PlayerType.left] = 	{w: 0, 	h: -12};
+		this.m_pointOffset[MJ.PlayerType.right] =	{w: 0, 	h: -12};
+		this.m_pointOffset[MJ.PlayerType.top] =	{w: -4, h: 0};
 		this.m_offset = this.m_pointOffset[this.m_type];
 	},
 
@@ -52,7 +52,7 @@ var OperationNode = cc.Node.extend({
 		cc.assert(card_data != 0, "error: not find this card data!");
 		var card = new MjCard();
 		card.setCardValue(card_data);
-		card.setCardValueStr(card_data);
+		card.setJSpriteFrame(func_get_card_str(this.m_type, card_data));
 		this.m_itemWidth = card.getItemWidth();
 		this.m_itemHeight = card.getItemHeight();
 		this.addChild(card);
@@ -142,7 +142,7 @@ var OperationNode = cc.Node.extend({
 		var centerCard = null;
 		for (var i = 0; i < clength; i++){
 			var card = this._createOneMjCard(cardArr[i], i);
-			card.setJSpriteTexture(CMD_WG.AnCardRes[this.m_type]);
+			card.setJSpriteFrame(cc.formatStr(MJ.CardTypeEm[this.m_type], 0));
 			var point = this._setCardPoint(i);
 			card.setPosition(point);
 			if (i == 1)
@@ -194,7 +194,7 @@ var OperateCompoment = cc.Node.extend({
 
 	createOneOperationNode: function(oType, cardArr, ret)
 	{
-		if (oType == CMD_WG.OperationType.xgang && this.m_operatorList[cardArr[0]]){
+		if (oType == MJ.OperatorType.xgang && this.m_operatorList[cardArr[0]]){
 			//碰变杠  选杠情况
 			this.m_operatorList[cardArr[0]].changePengToGang(cardArr);
 		} else{
@@ -219,7 +219,7 @@ var OperateCompoment = cc.Node.extend({
 			}	
 
 			//只存碰
-			if (oType == CMD_WG.OperationType.peng){
+			if (oType == MJ.OperatorType.peng){
 				this.m_operatorList[cardArr[0]] = node;
 			}
 		}

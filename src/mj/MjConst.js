@@ -52,15 +52,15 @@ MJ.W = 1280;//cc.winSize.width;
 MJ.H = 720;//cc.winSize.height;
 MJ.IintHandPoint = [];
 MJ.IintHandPoint[MJ.PlayerType.bottom] = cc.p(110, 60);
-MJ.IintHandPoint[MJ.PlayerType.right] = cc.p(MJ.W-100, MJ.H/2-150);
+MJ.IintHandPoint[MJ.PlayerType.right] = cc.p(MJ.W-100, MJ.H/2-130);
 MJ.IintHandPoint[MJ.PlayerType.top] = cc.p(MJ.W/2+150, MJ.H-50);
 MJ.IintHandPoint[MJ.PlayerType.left] = cc.p(110, MJ.H/2+150);
 //操作牌组件初始位置
 MJ.IintOperatorPoint = [];
-MJ.IintOperatorPoint[MJ.PlayerType.bottom] = cc.p(0, 0);
-MJ.IintOperatorPoint[MJ.PlayerType.right] = cc.p(0, 0);
-MJ.IintOperatorPoint[MJ.PlayerType.top] = cc.p(0, 0);
-MJ.IintOperatorPoint[MJ.PlayerType.left] = cc.p(0, 0);
+MJ.IintOperatorPoint[MJ.PlayerType.bottom] = cc.p(MJ.W-60, 60);
+MJ.IintOperatorPoint[MJ.PlayerType.right] = cc.p(MJ.W-100, MJ.H/2-200);
+MJ.IintOperatorPoint[MJ.PlayerType.top] = cc.p(MJ.W/2+400, MJ.H-50);
+MJ.IintOperatorPoint[MJ.PlayerType.left] = cc.p(110, MJ.H/2+300);
 //出牌组件各家出牌起始位置
 MJ.IintOutPoint = [];
 MJ.IintOutPoint[MJ.PlayerType.bottom] = cc.p(MJ.W/2-283, 165);

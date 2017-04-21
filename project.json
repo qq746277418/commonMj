@@ -16,7 +16,7 @@
         "src/gl_schedule.js",
         "src/glbalFunc.js",
 
-        
+        "src/ui/base/CButton.js",
 
         "src/mj/LoadRes.js",
         "src/mj/MjConst.js",
@@ -31,6 +31,7 @@
         "src/mj/MyCardCompoment.js",
         "src/mj/OtherCardCompoment.js",
         "src/mj/OutCardsCompoment.js",
+        "src/mj/CpghOperatorUi.js",
 
         "src/app.js"
     ]

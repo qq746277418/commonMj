@@ -19,7 +19,6 @@ OtherCardAray[MJ.PlayerType.top] = [];
 var OtherCardNum = [];  //记录当前牌数
 
 var OtherCardCompoment = cc.Node.extend({
-	m_AI: new RuoZhiAI(),
 	m_gameRoot: null,
 	m_comOperator: null,
 	m_opratorPos: cc.p(0, 0),
@@ -114,14 +113,11 @@ var OtherCardCompoment = cc.Node.extend({
 
 	uploadCard: function(card)
 	{
-		cc.log("没有牌----", card);
 		this.m_isUpLoad = true;
 		if (card){
 			this._createMjCard(-1);
 			this.updateCardListPoint();
 			this.m_cardNum++;
-
-			this.m_AI.playOutCard(card, this.m_type);
 		}
 		this.lastCardIsNeedNullX();
 	},
@@ -164,12 +160,12 @@ var OtherCardCompoment = cc.Node.extend({
 		this.m_comOperator.createOneOperationNode(operateType, cardArr, action_card);
 		var num = 0;
 		if (action_card){
-			if (operateType == CMD_WG.OperationType.peng || operateType == CMD_WG.OperationType.chi){
+			if (operateType == MJ.OperatorType.peng || operateType == MJ.OperatorType.chi){
 				//s随便剔除一张
 				num = 2;
-			} else if (operateType == CMD_WG.OperationType.agang) {
+			} else if (operateType == MJ.OperatorType.agang) {
 				num = 4;
-			} else if (operateType == CMD_WG.OperationType.xgang) {
+			} else if (operateType == MJ.OperatorType.xgang) {
 				num = 1;
 			}
 			for (var i = 0; i < num; i++){
@@ -260,10 +256,4 @@ var OtherCardCompoment = cc.Node.extend({
 	{
 		return this.m_comOperator;
 	},
-
-	//ai 独立出去的，开始是没有的
-	getAI: function()
-	{
-		return this.m_AI;
-	}
 });

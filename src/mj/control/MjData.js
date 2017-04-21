@@ -26,8 +26,7 @@ var MjData = cc.Class.extend({
 	//随机获取一张
 	randGetCardData: function()
 	{
-		var randIdx = Math.floor(Math.random() * this.m_cardArr.length);
-		cc.log("----randIdx----", randIdx, this.m_cardArr.length);
+		var randIdx = 0;//Math.floor(Math.random() * this.m_cardArr.length);
 		var randData = this.m_cardArr[randIdx];
 		this.m_cardArr.splice(randIdx, 1);
 		this.m_cardNumArr[randData]--;
